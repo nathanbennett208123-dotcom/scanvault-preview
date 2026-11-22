@@ -10,17 +10,6 @@ body{background:#0a0a0a;color:#e5e5e5;min-height:100vh}
 .nav{display:flex;gap:8px;padding:12px;background:#111;border-bottom:1px solid #222;overflow-x:auto}
 .nav button{background:#1a1a1a;border:1px solid #333;color:#e5e5e5;padding:8px 16px;border-radius:8px;cursor:pointer;white-space:nowrap;font-size:.85rem}
 .nav button.active{background:linear-gradient(135deg,#f59e0b,#ef4444);border-color:transparent;color:#fff;font-weight:600}
-
-/* Brand marquee */
-.marquee-wrap{overflow:hidden;background:#0d0d0d;border-bottom:1px solid #222;padding:10px 0;position:relative}
-.marquee-wrap::before,.marquee-wrap::after{content:'';position:absolute;top:0;width:60px;height:100%;z-index:2;pointer-events:none}
-.marquee-wrap::before{left:0;background:linear-gradient(90deg,#0d0d0d,transparent)}
-.marquee-wrap::after{right:0;background:linear-gradient(270deg,#0d0d0d,transparent)}
-.marquee-track{display:flex;gap:40px;width:max-content;animation:scrollMarquee 25s linear infinite}
-@keyframes scrollMarquee{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
-.marquee-item{display:flex;align-items:center;gap:8px;font-size:.9rem;font-weight:600;color:#888;white-space:nowrap;opacity:.85}
-.marquee-item span{font-size:1.4rem}
-
 .content{padding:20px;max-width:900px;margin:0 auto}
 .hero{text-align:center;padding:40px 20px;background:linear-gradient(135deg,rgba(245,158,11,.1),rgba(239,68,68,.1));border-radius:16px;margin-bottom:24px;border:1px solid #222}
 .hero h1{font-size:2rem;background:linear-gradient(135deg,#f59e0b,#ef4444);-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:8px}
@@ -33,25 +22,6 @@ body{background:#0a0a0a;color:#e5e5e5;min-height:100vh}
 .stat-label{font-size:.8rem;opacity:.6;margin-top:4px}
 .btn{display:inline-block;background:linear-gradient(135deg,#f59e0b,#ef4444);color:#fff;border:none;padding:12px 24px;border-radius:10px;cursor:pointer;font-weight:600;text-decoration:none;margin-top:12px}
 .btn-secondary{background:#1a1a1a;border:1px solid #333}
-
-/* Feature boxes with hover popup + image */
-.feature-wrap{position:relative;margin-bottom:10px}
-.feature{display:flex;align-items:center;gap:12px;padding:14px;background:#0f0f0f;border-radius:10px;border:1px solid #222;cursor:pointer;transition:all .25s ease;position:relative;z-index:3}
-.feature:hover{background:#1a1a1a;border-color:#f59e0b;transform:translateY(-3px);box-shadow:0 8px 24px rgba(245,158,11,.15)}
-.feature-icon{font-size:1.3rem;transition:transform .25s ease}
-.feature:hover .feature-icon{transform:scale(1.2)}
-
-/* Tooltip popup */
-.feature-tooltip{position:absolute;bottom:calc(100% + 10px);left:50%;transform:translateX(-50%) scale(.9);background:#1a1a1a;border:1px solid #f59e0b;border-radius:10px;padding:10px 14px;font-size:.8rem;color:#e5e5e5;white-space:nowrap;opacity:0;pointer-events:none;transition:all .25s ease;z-index:5}
-.feature-tooltip::after{content:'';position:absolute;top:100%;left:50%;transform:translateX(-50%);border:6px solid transparent;border-top-color:#f59e0b}
-.feature-wrap:hover .feature-tooltip{opacity:1;transform:translateX(-50%) scale(1)}
-
-/* Hover image that appears underneath */
-.feature-image{height:0;overflow:hidden;transition:height .35s ease;border-radius:0 0 10px 10px;margin-top:-4px;position:relative;z-index:2}
-.feature-wrap:hover .feature-image{height:140px}
-.feature-image-inner{width:100%;height:100%;display:flex;align-items:center;justify-content:center;background:#0a0a0a;border:1px solid #222;border-top:none;border-radius:0 0 10px 10px}
-.feature-image-inner svg{width:90%;height:90%}
-
 .vehicle{display:flex;align-items:center;gap:16px;padding:16px;background:#0f0f0f;border-radius:12px;border:1px solid #222;margin-bottom:12px}
 .vehicle-icon{width:48px;height:48px;background:linear-gradient(135deg,#f59e0b,#ef4444);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.5rem}
 .vehicle-info{flex:1}
@@ -59,6 +29,8 @@ body{background:#0a0a0a;color:#e5e5e5;min-height:100vh}
 .vehicle-info span{font-size:.85rem;opacity:.6}
 .tag{display:inline-block;padding:4px 10px;border-radius:20px;font-size:.75rem;font-weight:600;background:#1a1a1a;border:1px solid #333;margin-right:6px}
 .tag.active{background:rgba(245,158,11,.15);border-color:rgba(245,158,11,.3);color:#f59e0b}
+.feature{display:flex;align-items:center;gap:12px;padding:14px;background:#0f0f0f;border-radius:10px;border:1px solid #222;margin-bottom:10px}
+.feature-icon{font-size:1.3rem}
 .scan-item{display:flex;justify-content:space-between;align-items:center;padding:12px;background:#0f0f0f;border-radius:10px;border:1px solid #222;margin-bottom:8px}
 .page{display:none}
 .page.active{display:block}
@@ -72,46 +44,6 @@ body{background:#0a0a0a;color:#e5e5e5;min-height:100vh}
   <button onclick="showPage('keys',this)">Key Prog</button>
   <button onclick="showPage('live',this)">Live Data</button>
 </nav>
-
-<!-- Scrolling brand marquee -->
-<div class="marquee-wrap">
-  <div class="marquee-track" id="marquee">
-    <div class="marquee-item"><span>&#127937;</span> Jeep</div>
-    <div class="marquee-item"><span>&#128658;</span> Ford</div>
-    <div class="marquee-item"><span>&#128666;</span> Toyota</div>
-    <div class="marquee-item"><span>&#128690;</span> Caterpillar</div>
-    <div class="marquee-item"><span>&#128663;</span> BMW</div>
-    <div class="marquee-item"><span>&#128665;</span> Mercedes</div>
-    <div class="marquee-item"><span>&#128664;</span> Audi</div>
-    <div class="marquee-item"><span>&#128756;</span> Holden</div>
-    <div class="marquee-item"><span>&#128661;</span> Nissan</div>
-    <div class="marquee-item"><span>&#128662;</span> Mazda</div>
-    <div class="marquee-item"><span>&#128667;</span> Subaru</div>
-    <div class="marquee-item"><span>&#128668;</span> Mitsubishi</div>
-    <div class="marquee-item"><span>&#128669;</span> Isuzu</div>
-    <div class="marquee-item"><span>&#128670;</span> Hino</div>
-    <div class="marquee-item"><span>&#128671;</span> Kenworth</div>
-    <div class="marquee-item"><span>&#128672;</span> Mack</div>
-    <!-- Duplicate for seamless loop -->
-    <div class="marquee-item"><span>&#127937;</span> Jeep</div>
-    <div class="marquee-item"><span>&#128658;</span> Ford</div>
-    <div class="marquee-item"><span>&#128666;</span> Toyota</div>
-    <div class="marquee-item"><span>&#128690;</span> Caterpillar</div>
-    <div class="marquee-item"><span>&#128663;</span> BMW</div>
-    <div class="marquee-item"><span>&#128665;</span> Mercedes</div>
-    <div class="marquee-item"><span>&#128664;</span> Audi</div>
-    <div class="marquee-item"><span>&#128756;</span> Holden</div>
-    <div class="marquee-item"><span>&#128661;</span> Nissan</div>
-    <div class="marquee-item"><span>&#128662;</span> Mazda</div>
-    <div class="marquee-item"><span>&#128667;</span> Subaru</div>
-    <div class="marquee-item"><span>&#128668;</span> Mitsubishi</div>
-    <div class="marquee-item"><span>&#128669;</span> Isuzu</div>
-    <div class="marquee-item"><span>&#128670;</span> Hino</div>
-    <div class="marquee-item"><span>&#128671;</span> Kenworth</div>
-    <div class="marquee-item"><span>&#128672;</span> Mack</div>
-  </div>
-</div>
-
 <div class="content">
   <div id="dashboard" class="page active">
     <div class="hero">
@@ -128,50 +60,12 @@ body{background:#0a0a0a;color:#e5e5e5;min-height:100vh}
     </div>
     <div class="card" style="margin-top:24px">
       <h3>Quick Actions</h3>
-
-      <div class="feature-wrap">
-        <div class="feature-tooltip">Scan all control modules for stored &amp; pending faults</div>
-        <div class="feature"><span class="feature-icon">&#128269;</span><div><div style="font-weight:600">Read Codes</div><div style="font-size:.85rem;opacity:.6">Scan for active and pending DTCs</div></div></div>
-        <div class="feature-image">
-          <div class="feature-image-inner">
-            <svg viewBox="0 0 200 100" fill="none"><rect x="20" y="30" width="160" height="50" rx="8" fill="#1a1a1a" stroke="#f59e0b" stroke-width="2"/><text x="100" y="55" text-anchor="middle" fill="#f59e0b" font-size="10" font-family="monospace">P0XXX CODES</text><text x="100" y="70" text-anchor="middle" fill="#888" font-size="7">P0301 P0420 P0171</text><circle cx="35" cy="45" r="4" fill="#ef4444"/><circle cx="48" cy="45" r="4" fill="#f59e0b"/><circle cx="61" cy="45" r="4" fill="#22c55e"/></svg>
-          </div>
-        </div>
-      </div>
-
-      <div class="feature-wrap">
-        <div class="feature-tooltip">Reset check-engine light and clear all fault codes</div>
-        <div class="feature"><span class="feature-icon">&#128295;</span><div><div style="font-weight:600">Clear Codes</div><div style="font-size:.85rem;opacity:.6">Reset MIL and clear fault codes</div></div></div>
-        <div class="feature-image">
-          <div class="feature-image-inner">
-            <svg viewBox="0 0 200 100" fill="none"><rect x="60" y="25" width="80" height="50" rx="25" fill="#1a1a1a" stroke="#22c55e" stroke-width="2"/><text x="100" y="55" text-anchor="middle" fill="#22c55e" font-size="14" font-weight="bold">MIL OFF</text><path d="M85 45 L95 55 L115 35" stroke="#22c55e" stroke-width="3" fill="none" stroke-linecap="round"/></svg>
-          </div>
-        </div>
-      </div>
-
-      <div class="feature-wrap">
-        <div class="feature-tooltip">View real-time sensor data: RPM, temp, speed, O2 &amp; more</div>
-        <div class="feature"><span class="feature-icon">&#128200;</span><div><div style="font-weight:600">Live Data</div><div style="font-size:.85rem;opacity:.6">View real-time PID values</div></div></div>
-        <div class="feature-image">
-          <div class="feature-image-inner">
-            <svg viewBox="0 0 200 100" fill="none"><rect x="10" y="20" width="180" height="60" rx="6" fill="#0f0f0f" stroke="#222"/><polyline points="20,70 50,55 80,60 110,40 140,50 170,35 190,45" stroke="#f59e0b" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/><circle cx="50" cy="55" r="3" fill="#f59e0b"/><circle cx="110" cy="40" r="3" fill="#f59e0b"/><circle cx="170" cy="35" r="3" fill="#f59e0b"/><text x="100" y="88" text-anchor="middle" fill="#888" font-size="8">RPM / Coolant / Throttle</text></svg>
-          </div>
-        </div>
-      </div>
-
-      <div class="feature-wrap">
-        <div class="feature-tooltip">Add keys, all-keys-lost, remote pairing &amp; immobilizer</div>
-        <div class="feature"><span class="feature-icon">&#128273;</span><div><div style="font-weight:600">Key Programming</div><div style="font-size:.85rem;opacity:.6">Add keys, program remotes</div></div></div>
-        <div class="feature-image">
-          <div class="feature-image-inner">
-            <svg viewBox="0 0 200 100" fill="none"><rect x="70" y="35" width="60" height="30" rx="4" fill="#1a1a1a" stroke="#f59e0b" stroke-width="2"/><circle cx="85" cy="50" r="6" fill="#f59e0b"/><rect x="95" y="47" width="25" height="6" rx="2" fill="#333"/><rect x="105" y="44" width="6" height="3" rx="1" fill="#f59e0b"/><rect x="115" y="44" width="6" height="3" rx="1" fill="#f59e0b"/><text x="100" y="82" text-anchor="middle" fill="#888" font-size="8">IMMO / REMOTE / FOBIK</text></svg>
-          </div>
-        </div>
-      </div>
-
+      <div class="feature"><span class="feature-icon">&#128269;</span><div><div style="font-weight:600">Read Codes</div><div style="font-size:.85rem;opacity:.6">Scan for active and pending DTCs</div></div></div>
+      <div class="feature"><span class="feature-icon">&#128295;</span><div><div style="font-weight:600">Clear Codes</div><div style="font-size:.85rem;opacity:.6">Reset MIL and clear fault codes</div></div></div>
+      <div class="feature"><span class="feature-icon">&#128200;</span><div><div style="font-weight:600">Live Data</div><div style="font-size:.85rem;opacity:.6">View real-time PID values</div></div></div>
+      <div class="feature"><span class="feature-icon">&#128273;</span><div><div style="font-weight:600">Key Programming</div><div style="font-size:.85rem;opacity:.6">Add keys, program remotes</div></div></div>
     </div>
   </div>
-
   <div id="diagnostics" class="page">
     <div class="hero"><h1>Diagnostics</h1><p>Read and clear fault codes across all modules</p></div>
     <div class="card">
@@ -185,7 +79,6 @@ body{background:#0a0a0a;color:#e5e5e5;min-height:100vh}
       <div class="scan-item"><span>2021 Toyota Hilux</span><span style="font-size:.85rem;opacity:.6">No codes</span></div>
     </div>
   </div>
-
   <div id="garage" class="page">
     <div class="hero"><h1>My Garage</h1><p>Manage your vehicles and service history</p></div>
     <div class="vehicle">
@@ -209,7 +102,6 @@ body{background:#0a0a0a;color:#e5e5e5;min-height:100vh}
       <span class="tag">Heavy</span>
     </div>
   </div>
-
   <div id="keys" class="page">
     <div class="hero"><h1>Key Programming</h1><p>Locksmith-grade key and remote programming</p></div>
     <div class="card">
@@ -219,7 +111,6 @@ body{background:#0a0a0a;color:#e5e5e5;min-height:100vh}
       <div class="feature"><span class="feature-icon">&#128260;</span><div><div style="font-weight:600">Remote Programming</div><div style="font-size:.85rem;opacity:.6">Pair keyless entry remotes and fobs</div></div></div>
     </div>
   </div>
-
   <div id="live" class="page">
     <div class="hero"><h1>Live Data</h1><p>Real-time PID monitoring</p></div>
     <div class="grid">
@@ -235,7 +126,6 @@ body{background:#0a0a0a;color:#e5e5e5;min-height:100vh}
     </div>
   </div>
 </div>
-
 <script>
 function showPage(id,btn){
   document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
